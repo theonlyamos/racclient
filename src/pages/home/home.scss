@@ -1,7 +1,9 @@
 page-home {
     .container {
-        background: url('../../assets/images/shiprex-background.png') repeat repeat,
-                    linear-gradient(#111, #222);
+        background: url('../../assets/imgs/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top left;
         border: 0 !important;
     }
 }
