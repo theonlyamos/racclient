@@ -1,4 +1,23 @@
 page-home {
+
+    .content {
+        min-width: 200px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+    }
+
+    .info-head {
+        color: color($colors, primary);
+        text-decoration: underline;
+        text-transform: uppercase;
+    }
+
+    .info {
+        color: white;
+        padding: 2px;
+        font-weight: bold;
+    }
+
     .container {
         background: url('../../assets/imgs/background.jpg');
         background-repeat: no-repeat;
