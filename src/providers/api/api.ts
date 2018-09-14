@@ -13,8 +13,16 @@ export class ApiProvider {
     
   }
 
-  getInfo(): Observable<any> {
+  home(): Observable<any> {
     return this.http.get(this.url)
+  }
+
+  openPath(name): Observable<any> {
+    return this.http.post(this.url, {name: name})
+  }
+
+  getInfo(info): Observable<any> {
+    return this.http.get(this.url + info)
   }
 
 }

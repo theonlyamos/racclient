@@ -2,8 +2,11 @@ page-home {
 
     .content {
         min-width: 200px;
-        background: rgba(0, 0, 0, 0.2);
         border-radius: 2px;
+    }
+
+    .bg-trans {
+        background: rgba(0, 0, 0, 0.2);
     }
 
     .info-head {

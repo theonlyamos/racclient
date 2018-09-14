@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { TabsPage } from '../pages/tabs/tabs';
+import { ExplorerPage } from '../pages/explorer/explorer';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +16,8 @@ import { ApiProvider } from '../providers/api/api';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    TabsPage,
+    ExplorerPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { ApiProvider } from '../providers/api/api';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    TabsPage,
+    ExplorerPage
   ],
   providers: [
     StatusBar,

@@ -8,11 +8,13 @@
 </ion-header>
 
 <ion-content padding class="container">
-  <ion-refresher [hidden]="info"></ion-refresher>
-  <div class="content" *ngIf="info">
+  <div text-center color=warning [hidden]="info">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div class="content bg-trans" *ngIf="info">
   <ion-grid>
     <ion-row>
-      <ion-col col-lg-2>
+      <ion-col col-md-3>
         <div class="info">
           <ion-label class="info-head">Platform</ion-label>
           <p>{{info.platform | uppercase}}</p>
@@ -27,20 +29,24 @@
           <p>SYSTEM: {{toFixed((info.cpuusage.system)/1024)}}MB</p>
         </div>
       </ion-col>
-      <ion-col col-lg-2 text-right>
+      <ion-col col-md-3 text-right>
         <div class="info">
           <ion-label class="info-head">uid</ion-label>
           <p>{{info.uid}}</p>
         </div>
         <div class="info">
           <ion-label class="info-head">Memory</ion-label>
-          <p>TOTAL: {{toFixed((info.memory.heapTotal)/1024)}}MB</p>
-          <p>USED: {{toFixed((info.memory.heapUsed)/1024)}}MB</p>
-          <p>EXTERNAL: {{toFixed((info.memory.external)/1024)}}MB</p>
-          <p>RSS: {{toFixed((info.memory.rss)/1024)}}MB</p>
+          <p>TOTAL: {{toFixed((info.memory.total)/1024)}}GB</p>
+          <p>FREE: {{toFixed((info.memory.free)/1024)}}GB</p>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
   </div>
+  <ion-card *ngIf="info" class="bg-trans">
+    <ion-item no-lines class="bg-trans" (tap)="getActiveWindows()">
+      <ion-icon name="albums" item-start color=light></ion-icon>
+      <ion-label color=light>Active Windows</ion-label>
+    </ion-item>
+  </ion-card>
 </ion-content>
