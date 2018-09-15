@@ -17,12 +17,22 @@ export class ApiProvider {
     return this.http.get(this.url)
   }
 
-  openPath(name): Observable<any> {
-    return this.http.post(this.url, {name: name})
+  openPath(dirUrl, name): Observable<any> {
+    var options = {params: {name: name}}
+    return this.http.get(this.url + dirUrl, options)
   }
 
   getInfo(info): Observable<any> {
     return this.http.get(this.url + info)
+  }
+
+  activateWindow(windowUrl, name): Observable<any> {
+    return this.http.post(this.url + windowUrl, {window: name})
+  }
+
+  closeWindow(windowUrl, name): Observable<any> {
+    var options = {params: {window: name}}
+    return this.http.delete(this.url + windowUrl, options)
   }
 
 }

@@ -1,7 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ActionSheetController } from 'ionic-angular';
+import { NavController, ActionSheetController, NavParams, PopoverController, ToastController, ViewController } from 'ionic-angular';
 
 import { ApiProvider } from '../../providers/api/api';
+
+@Component({
+  selector: "win-popover",
+  templateUrl: 'win-popover.html'
+})
+export class WinPopOver {
+
+  window: any;
+  url: string = 'window/'
+
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, public api: ApiProvider,
+    public toastCtrl: ToastController
+  ){
+    this.window = navParams.get('window')
+  }
+
+  public presentToast(msg) {
+    var toast = this.toastCtrl.create({
+      message: msg,
+      position: 'bottom',
+      duration: 500
+    })
+    toast.present()
+  }
+
+  public activateWindow() {
+    this.api.activateWindow(this.url, this.window).subscribe((res: any) => {
+      this.viewCtrl.dismiss()
+    })
+  }
+
+  public closeWindow() {
+    this.api.closeWindow(this.url, this.window).subscribe((res: any) => {
+      if (res.success == true) {
+        this.presentToast('Window closed successfully')
+        this.viewCtrl.dismiss()
+      }
+    })
+  }
+
+}
+
 
 @Component({
   selector: 'page-home',
@@ -20,7 +62,7 @@ export class HomePage implements OnInit {
 ]
 
   constructor(public navCtrl: NavController, public api: ApiProvider,
-    public actionSheetCtrl: ActionSheetController
+    public actionSheetCtrl: ActionSheetController, public popoverCtrl: PopoverController
   ) {
 
   }
@@ -36,7 +78,7 @@ export class HomePage implements OnInit {
   }
 
   getActiveWindows() {
-    this.api.getInfo('info/windows').subscribe(res => {
+    this.api.getInfo('window').subscribe(res => {
       this.windows = res
 
       var actionSheet = this.actionSheetCtrl.create({})
@@ -46,7 +88,8 @@ export class HomePage implements OnInit {
           icon: 'albums',
           text: win.trim(),
           handler: () => {
-            console.log(win.trim())
+            var popover = this.popoverCtrl.create(WinPopOver, {window: win.trim()})
+            popover.present()
           }
         })
       });

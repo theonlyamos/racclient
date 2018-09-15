@@ -7,6 +7,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ExplorerPage } from '../pages/explorer/explorer';
+import { FolderPage } from '../pages/folder/folder';
+
+import { WinPopOver } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +20,9 @@ import { ApiProvider } from '../providers/api/api';
     MyApp,
     HomePage,
     TabsPage,
-    ExplorerPage
+    ExplorerPage,
+    FolderPage,
+    WinPopOver
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,9 @@ import { ApiProvider } from '../providers/api/api';
     MyApp,
     HomePage,
     TabsPage,
-    ExplorerPage
+    ExplorerPage, 
+    FolderPage,
+    WinPopOver
   ],
   providers: [
     StatusBar,

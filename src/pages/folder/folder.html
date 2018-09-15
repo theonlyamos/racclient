@@ -1,10 +1,7 @@
 <ion-header>
 
   <ion-navbar color=primary>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+    <ion-title *ngIf="cwd">{{cwd}}</ion-title>
   </ion-navbar>
 
 </ion-header>
