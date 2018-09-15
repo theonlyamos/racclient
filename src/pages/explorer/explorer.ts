@@ -26,10 +26,10 @@ export class ExplorerPage implements OnInit {
     })
   }
 
-  openPath(name: object) {
+  openPath(dirType, name) {
     this.api.openPath(this.url, name).subscribe((res: any) => {
-      if (name.type == 'folder') {
-        this.navCtrl.push(FolderPage, {directory: res, cwd: name.fullpath})
+      if (dirType == 'folder') {
+        this.navCtrl.push(FolderPage, {directory: res, cwd: name})
       }
     })
   }

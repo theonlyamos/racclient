@@ -17,13 +17,13 @@
   
   <div class="content bg-trans" *ngIf="directory">
     <div *ngFor="let path of directory" text-center>
-      <div *ngIf="path.type == 'folder'" class="dir" (tap)="openPath(path)">
+      <div *ngIf="path.type == 'folder'" class="dir" (tap)="openPath(path.type, path.fullpath)">
         <ion-icon name="folder" color=primary class="dir-icon"></ion-icon>
         <p class="dir-name">{{path.name}}</p>
       </div>
     </div>
     <div *ngFor="let path of directory" text-center>
-      <div  *ngIf="path.type == 'file'" class="dir" (tap)="openPath(path)">
+      <div  *ngIf="path.type == 'file'" class="dir" (tap)="openPath(path.type, path.fullpath)">
         <ion-icon name="photos" color=primary class="dir-icon"></ion-icon>
         <p class="dir-name">{{path.name}}</p>
       </div>

@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the FolderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -19,9 +14,19 @@ export class FolderPage {
   directory: any
   cwd: string = 'home'
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public api: ApiProvider
+  ) {
     this.cwd = navParams.get('cwd')
     this.directory = navParams.get('directory')
+  }
+
+  openPath(dirType, name) {
+    this.api.openPath(this.url, name).subscribe((res: any) => {
+      if (dirType == 'folder') {
+        this.navCtrl.push(FolderPage, {directory: res, cwd: name})
+      }
+    })
   }
 
 }
