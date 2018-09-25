@@ -3,12 +3,15 @@ import { NavController, ActionSheetController, NavParams, PopoverController, Toa
 
 import { ApiProvider } from '../../providers/api/api';
 
+import { KeypadPage } from '../keypad/keypad';
+
 @Component({
   selector: "win-popover",
   templateUrl: 'win-popover.html'
 })
 export class WinPopOver {
 
+  info: any;
   window: any;
   url: string = 'window/'
 
@@ -22,7 +25,7 @@ export class WinPopOver {
     var toast = this.toastCtrl.create({
       message: msg,
       position: 'bottom',
-      duration: 500
+      duration: 3000
     })
     toast.present()
   }
@@ -39,11 +42,14 @@ export class WinPopOver {
         this.presentToast('Window closed successfully')
         this.viewCtrl.dismiss()
       }
+      else {
+        this.presentToast('Unable to close window')
+        this.viewCtrl.dismiss()
+      }
     })
   }
 
 }
-
 
 @Component({
   selector: 'page-home',
@@ -62,19 +68,29 @@ export class HomePage implements OnInit {
 ]
 
   constructor(public navCtrl: NavController, public api: ApiProvider,
-    public actionSheetCtrl: ActionSheetController, public popoverCtrl: PopoverController
-  ) {
-
-  }
+    public actionSheetCtrl: ActionSheetController, public popoverCtrl: PopoverController,
+    public toastCtrl: ToastController
+  ) {}
 
   ngOnInit() {
-    this.api.home().subscribe(res => {
-      this.info = res
-    })
+    this.doRefresh(0)
+  }
+
+  ionViewDidEnter() {
+    this.doRefresh(0)
   }
 
   toFixed(inf: number): number {
     return parseFloat(inf.toFixed(2))
+  }
+
+  presentToast(msg) {
+    var toast = this.toastCtrl.create({
+      message: msg,
+      position: 'bottom',
+      duration: 3000
+    })
+    toast.present()
   }
 
   getActiveWindows() {
@@ -94,6 +110,40 @@ export class HomePage implements OnInit {
         })
       });
       actionSheet.present()
+    })
+  }
+
+  presentKeyPad() {
+    var keypad = this.popoverCtrl.create(KeypadPage)
+    keypad.present()
+  }
+
+  doShutdown() {
+    this.api.performAction('shutdown').subscribe(res => {
+      this.presentToast(res.message)
+    }, err => {
+      console.error(err)
+    })
+  }
+
+  doLockDown() {
+    this.api.performAction('lock').subscribe(res => {
+      this.presentToast(res.message)
+    }, err => {
+      console.error(err)
+    })
+  }
+
+
+  doRefresh(refresher: any) {
+    this.api.home().subscribe(res => {
+      this.info = res
+
+      if (refresher) {
+        refresher.complete()
+      }
+    }, err => {
+      console.error(JSON.stringify(err))
     })
   }
 

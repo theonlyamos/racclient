@@ -10,6 +10,7 @@ import { ExplorerPage } from '../pages/explorer/explorer';
 import { FolderPage } from '../pages/folder/folder';
 
 import { WinPopOver } from '../pages/home/home';
+import { KeypadPage } from '../pages/keypad/keypad';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,8 +23,9 @@ import { ApiProvider } from '../providers/api/api';
     TabsPage,
     ExplorerPage,
     FolderPage,
-    WinPopOver
-  ],
+    WinPopOver,
+    KeypadPage
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -36,7 +38,8 @@ import { ApiProvider } from '../providers/api/api';
     TabsPage,
     ExplorerPage, 
     FolderPage,
-    WinPopOver
+    WinPopOver,
+    KeypadPage
   ],
   providers: [
     StatusBar,

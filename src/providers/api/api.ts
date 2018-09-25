@@ -35,4 +35,14 @@ export class ApiProvider {
     return this.http.delete(this.url + windowUrl, options)
   }
 
+  performAction(command): Observable<any> {
+    var options = {params: {cmd: command}}
+    return this.http.get(this.url + 'command', options)
+  }
+
+  keyPress(key): Observable<any> {
+    return this.http.post(this.url + 'command/key', {key: key})
+  }
+
+
 }

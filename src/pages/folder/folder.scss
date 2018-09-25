@@ -1,20 +1,7 @@
 page-folder {
-    .content {
-        min-width: 200px;
-        border-radius: 2px;
-    }
-
-    .bg-trans {
-        background: rgba(0, 0, 0, 0.2);
-    }
 
     .dir {
-        width: 4.8em;
-        max-height: 4.9em;
-        float: left;
-        overflow: hidden;
-        padding: 5px;
-        cursor: pointer;
+        background: transparent;
     }
 
     .dir:hover {
@@ -23,12 +10,10 @@ page-folder {
 
     .dir-name {
         color: white;
-        font-size: 0.8em;
-        margin-top: -5px;
     }
 
     .dir-icon {
-        font-size: 3em;
+        font-size: 2.5em;
     }
 
     .container {
