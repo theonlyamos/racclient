@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-list>
+    <ion-list-header>{{window}}</ion-list-header>
+    <button ion-item icon-start (click)="activateWindow()">
+      <ion-icon name='albums' item-left color=primary></ion-icon>
+      Focus
+    </button>
+    <button ion-item icon-start (click)="closeWindow()">
+      <ion-icon name='close' item-left color=danger></ion-icon>
+      Close
+    </button>
+  </ion-list>
+</ion-content>

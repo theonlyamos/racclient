@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color=primary>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,12 +7,66 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content padding class="container">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="tools bg-trans">
+    <ion-icon name="power" color=danger class="tool power" (tap)="doShutdown()"></ion-icon>
+    <ion-icon name="lock" color=success class="tool" (tap)="doLockDown()"></ion-icon>
+    <ion-icon name="albums" color=primary class="tool" (tap)="getActiveWindows()"></ion-icon>
+    <ion-icon name="keypad" color=light class="tool" (tap)="presentKeyPad()"></ion-icon>
+    <ion-icon name="move" color=primary class="tool"></ion-icon>
+    <ion-icon name="options" color=warning class="tool"></ion-icon>
+  </div>
+  <div class="content bg-trans" *ngIf="info">
+    <ion-grid>
+      <ion-row>
+          <div class="info">
+            <ion-label class="info-head">Platform</ion-label>
+            <p>{{info.platform | uppercase}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">arch</ion-label>
+            <p>{{info.arch}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">Uptime</ion-label>
+            <p>{{info.uptime}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">uid</ion-label>
+            <p>{{info.uid}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">user</ion-label>
+            <p>{{info.username}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">hostname</ion-label>
+            <p>{{info.hostname}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">homedir</ion-label>
+            <p>{{info.homedir}}</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">Memory</ion-label>
+            <p>TOTAL: {{toFixed((info.memory.total)/1024)}}GB</p>
+            <p>FREE: {{toFixed((info.memory.free)/1024)}}GB</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">Cpu-Usage</ion-label>
+            <p>USER: {{toFixed((info.cpuusage.user)/1024)}}MB</p>
+            <p>SYSTEM: {{toFixed((info.cpuusage.system)/1024)}}MB</p>
+          </div>
+          <div class="info">
+            <ion-label class="info-head">interfaces</ion-label>
+            <div *ngFor="let iface of info.interfaces">
+              <p>{{iface.name}}: {{iface.address}}</p>
+            </div>
+          </div>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

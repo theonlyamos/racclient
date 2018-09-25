@@ -1,7 +1,42 @@
 page-home {
+
+    .content {
+        min-width: 200px;
+        border-radius: 2px;
+    }
+
+    .bg-trans {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .info-head {
+        color: color($colors, secondary);
+        text-decoration: underline;
+        text-transform: uppercase;
+    }
+
+    .info {
+        color: white;
+        padding: 2px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .tool {
+        font-size: 2.5em;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .tool:hover {
+        text-shadow: 2px 1px 1px grey;
+    }
+
     .container {
-        background: url('../../assets/images/shiprex-background.png') repeat repeat,
-                    linear-gradient(#111, #222);
+        background: url('../../assets/imgs/background1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top left;
         border: 0 !important;
     }
 }

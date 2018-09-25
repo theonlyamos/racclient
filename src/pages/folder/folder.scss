@@ -1,0 +1,26 @@
+page-folder {
+
+    .dir {
+        background: transparent;
+    }
+
+    .dir:hover {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .dir-name {
+        color: white;
+    }
+
+    .dir-icon {
+        font-size: 2.5em;
+    }
+
+    .container {
+        background: url('../../assets/imgs/background1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top left;
+        border: 0 !important;
+    }
+}
